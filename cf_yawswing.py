@@ -39,7 +39,7 @@ class ControllerThread(threading.Thread):
     yaw_ref = 45
 
     # Swing period in ms
-    yaw_swing_period_ms = 5000
+    yaw_swing_period_ms = 10000
 
     # The max error in angle before you can switch reference yaw (+90 or -90) value
     yaw_err_max = 5

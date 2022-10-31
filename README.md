@@ -1,4 +1,4 @@
-# wasp_as_cf_yawswing
+# Control assignment using a Crazyflie drone
 Repository for a control assignment in the WASP Autonomous Systems course
 
 ## Installation
@@ -6,7 +6,7 @@ We will offer two options to run the code. The first one is to use Linux or MacO
 
 In the examples below we will put all new code in the directory wasp_as_cf to make it as easy as possible to clean up after the assignment.
 
-### MacOS and Linux
+#### MacOS and Linux
 To avoid a system wide installation of all the dependencies we run the code in a virtual environment
 <pre>
 mkdir wasp_as_cf
@@ -33,7 +33,7 @@ cd crazyflie-lib-python.git
 pip3 install -e .
 </pre>
 
-### Virtual machine
+#### Virtual machine
 
 
 ## Geting the skeleton code

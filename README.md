@@ -2,7 +2,9 @@
 Repository for a control assignment in the WASP Autonomous Systems course
 
 ## Installation
-### Virtual machine
+We will offer two options to run the code. The first one is to use Linux or MacOS and the second is to use a virtual machine provided by the company Bitcrazy that sells the Crazyflie that we will be using. 
+
+In the examples below we will put all new code in the directory wasp_as_cf to make it as easy as possible to clean up after the assignment.
 
 ### MacOS and Linux
 To avoid a system wide installation of all the dependencies we run the code in a virtual environment
@@ -30,6 +32,9 @@ git clone https://github.com/bitcraze/crazyflie-lib-python.git
 cd crazyflie-lib-python.git
 pip3 install -e .
 </pre>
+
+### Virtual machine
+
 
 ## Geting the skeleton code
 Go to the directory we created for the code and download the skeleton

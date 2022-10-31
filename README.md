@@ -63,6 +63,8 @@ cd wasp_as_cf_yawswing
 
 ## Running the code
 * First you need to make sure that the radio module is connected to your machine and detected.
+* Connect the battery on the drone. Keep the USB-cable plugged in whenever you are not testing soemthing as this will charge the battery. You can run the drone with the cable connected also but it will be difficult to rotate.
+* Turn on the drone by pressing in (GENTLY!!!) the small black push button in-between two of the arms. Make sure that the drone is standing on a flat surface when you do this as the drone's IMU calibrates upon boot.
 * Opening the code cf_yawswing.py and edit the URI (line 14) matches the channel of your drone
 * Run the code with <pre> 
 python3 cf_yawswing.py
@@ -86,5 +88,6 @@ If you rotate the drone you should see how the current angle change ("curr" abov
 ## Q&A
 * Q: Why is moy drone not rotating between the same angles?
 * A: Note that your task is to make the estimated yaw angle track the reference yaw angle. Since the estimate might drift the actual angle of the drone might not move between +/-45degs which is fine. What matters is making the estimated yaw track the references.
-
+* Q: The propellors are not moving despite me enabling the motors and setting a PWM value. What si wrong?
+* A: Reset the drone  
 

@@ -35,10 +35,11 @@ class ControllerThread(threading.Thread):
     # Are the motors enabled or not
     enabled = False
 
-    # The reference angle which is supposed to switch between +90 and -90.
-    # The stabilizer.yaw angle is supposed to move to +90 and then to -90 via 0 and then to +90 via 0 again.
-    # And so on
-    yaw_ref = 90
+    # The stabilizer.yaw angle is supposed to track the reference value which switches between +45 and -45.
+    yaw_ref = 45
+
+    # Swing period in ms
+    yaw_swing_period_ms = 5000
 
     # The max error in angle before you can switch reference yaw (+90 or -90) value
     yaw_err_max = 5
@@ -56,10 +57,7 @@ class ControllerThread(threading.Thread):
     def __init__(self, cf):
         super(ControllerThread, self).__init__()
         self.cf = cf
-
-        # Reset state
-        self.disable(forceDisable=True)
-
+    
         # Keeps track of when we last printed
         self.last_time_print = 0.0
 
@@ -103,9 +101,12 @@ class ControllerThread(threading.Thread):
         print('Error when logging %s: %s' % (logconf.name, msg))
 
     def run(self):
-        """Control loop definition"""
+        print('Wating for a connection')
         while not self.cf.is_connected():
             time.sleep(0.2)
+
+        # Make sure we are disabled
+        self.disable()
 
         print('Waiting for position estimate to be good enough...')
         self.reset_estimator()
@@ -115,7 +116,17 @@ class ControllerThread(threading.Thread):
         with open(log_file_name, 'w') as fh:
             t0 = time.time()
             while True:
+
                 time_start = time.time()
+
+                # See if it is time to switch the reference value
+                t_ms = int(1000.0 * (time_start - t0));
+                if self.yaw_ref > 0:
+                    if t_ms % self.yaw_swing_period_ms > self.yaw_swing_period_ms / 2:
+                        self.yaw_ref = -self.yaw_ref
+                else:
+                    if t_ms % self.yaw_swing_period_ms <= self.yaw_swing_period_ms / 2:
+                        self.yaw_ref = -self.yaw_ref
 
                 # Calculate the control signals
                 self.calc_control_signals()
@@ -138,14 +149,9 @@ class ControllerThread(threading.Thread):
                     ld = np.append(ld, self.motor_pwm2)
                     ld = np.append(ld, self.motor_pwm3)
                     ld = np.append(ld, self.motor_pwm4)
-                    fh.write(','.join(map(str, ld)) + '\n')
+                    fh.write(';'.join(map(str, ld)) + '\n')
                     fh.flush()
                 
-                # Print debugging message on the screen for easier debugging
-                message = ('yaw: (curr={}, ref={})\n'.format(self.yaw_curr, self.yaw_ref) +
-                   '     control: ({}, {}, {}, {}, {})\n'.format(self.enabled, self.motor_pwm1, self.motor_pwm2, self.motor_pwm3, self.motor_pwm4))
-                self.print_at_period(1.0, message)
-
                 # Sleep a while so that we keep a certain control frequency
                 self.loop_sleep(time_start)
 
@@ -166,31 +172,36 @@ class ControllerThread(threading.Thread):
         return diff
 
     def calc_control_signals(self):
+        # Calculate the error between the reference yaw signal and the current yaw
+        yaw_err = self.angle_difference(self.yaw_ref, self.yaw_curr)
+
+        # YOUR CODE STARTS HERE
         # THIS IS WHERE YOU SHOULD PUT YOUR CONTROL CODE
         # THAT OUTPUTS THE REFERENCE VALUES THE MOTOR PWM VALUES
         # In the code below set the variables m1, m2, m3, m4 appropriately
-        # The shoild each take on values in [0,65535]
-        #
+        # The shoild each take on values in [0,65535] which is taken care of
+        # by the function limit_pwm
 
-        pwm_to_almost_lift = 30000
-        
-        yaw_err = self.angle_difference(self.yaw_ref, self.yaw_curr)
-        
-        k = 100
-        m1 = pwm_to_almost_lift - k * yaw_err
-        m2 = pwm_to_almost_lift + k * yaw_err
-        m3 = pwm_to_almost_lift - k * yaw_err
-        m4 = pwm_to_almost_lift + k * yaw_err
+        m1 = 10000;
+        m2 = 10000;
+        m3 = 10000;
+        m4 = 10000;
 
-        # If we reached the reference value we switch teh reference value
-        if np.abs(yaw_err) < yaw_err_max:
-            self.yaw_ref = -self.yaw_ref
+        # YOUR CODE ENDS HERE
 
-        motor_pwm1 = limit_pwm(int(m1))
-        motor_pwm2 = limit_pwm(int(m2))
-        motor_pwm3 = limit_pwm(int(m3))
-        motor_pwm4 = limit_pwm(int(m4))
+        # Set the control variables and make sure that they are integers and between 0 and 65535
+        self.motor_pwm1 = self.limit_pwm(int(m1))
+        self.motor_pwm2 = self.limit_pwm(int(m2))
+        self.motor_pwm3 = self.limit_pwm(int(m3))
+        self.motor_pwm4 = self.limit_pwm(int(m4))
     
+        # Print debugging message on the screen for easier debugging
+        message = ('yaw: (curr={}, ref={}, err={})\n'.format(self.yaw_curr, self.yaw_ref, yaw_err) +
+                   '     control: ({}, {}, {}, {}, {})\n'.format(self.enabled, self.motor_pwm1, self.motor_pwm2, self.motor_pwm3, self.motor_pwm4))
+        self.print_at_period(1.0, message)
+
+
+
     def print_at_period(self, period, message):
         """ Prints the message at a given period """
         if (time.time() - period) >  self.last_time_print:
@@ -205,17 +216,15 @@ class ControllerThread(threading.Thread):
         # Should be replaced by something that actually checks...
         time.sleep(1.5)
 
-    def disable(self, forceDisable=True):
-        if self.enabled or forceDisable:
-            print('Disabling controller')
-            self.cf.param.set_value("motorPowerSet.enable", '0')
+    def disable(self):
+        print('Disabling controller')
         self.enabled = False
+        self.cf.param.set_value("motorPowerSet.enable", '0')
 
     def enable(self):
-        if not self.enabled:
-            print('Enabling controller')
-            self.cf.param.set_value("motorPowerSet.enable", '1')
+        print('Enabling controller')
         self.enabled = True
+        self.cf.param.set_value("motorPowerSet.enable", '1')
 
     def loop_sleep(self, time_start):
         """ Sleeps the control loop to make it run at a specified rate """
@@ -230,7 +239,7 @@ def handle_keyboard_input(control):
     for ch in read_input():
         if ch == 'e':
             control.enable()
-        elif ch == 'q':
+        elif ch == 'd':
             if not control.enabled:
                 print('Uppercase Q quits the program')
             control.disable()
@@ -252,7 +261,6 @@ if __name__ == "__main__":
     cf = crazyflie.Crazyflie(rw_cache='./cache')
     control = ControllerThread(cf)
     control.start()
-
 
     print('Connecting to', URI)
     cf.open_link(URI)

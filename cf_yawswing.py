@@ -47,6 +47,9 @@ class ControllerThread(threading.Thread):
     # The current yaw value read from the Crazyflie
     yaw_curr = 0
 
+    # The current battery voltage
+    battery_volt = 0
+
     # The motor PWM control signals. These are the signals you should use to control the
     # yaw angle. These values are integers in the interval [0, 65535]
     motor_pwm1 = 0
@@ -77,11 +80,20 @@ class ControllerThread(threading.Thread):
         log_stab_att = LogConfig(name='Stabilizer', period_in_ms=self.period_in_ms)
         log_stab_att.add_variable('stabilizer.yaw', 'float')
         self.cf.log.add_config(log_stab_att)
-    
-        if log_stab_att.valid:
+        
+        log_batt = LogConfig(name='Battery', period_in_ms=self.period_in_ms)
+        log_batt.add_variable('pm.vbat', 'float')
+        self.cf.log.add_config(log_batt)
+        
+        if log_stab_att.valid and log_batt.valid:
             log_stab_att.data_received_cb.add_callback(self._log_data_stab_att)
             log_stab_att.error_cb.add_callback(self._log_error)
             log_stab_att.start()
+
+            log_batt.data_received_cb.add_callback(self._log_data_batt)
+            log_batt.error_cb.add_callback(self._log_error)
+            log_batt.start()
+
         else:
             raise RuntimeError('One or more of the variables in the configuration was not found in log TOC.')
 
@@ -96,6 +108,9 @@ class ControllerThread(threading.Thread):
 
     def _log_data_stab_att(self, timestamp, data, logconf):
         self.yaw_curr = data['stabilizer.yaw'];
+    
+    def _log_data_batt(self, timestamp, data, logconf):
+        self.battery_volt = data['pm.vbat'];
     
     def _log_error(self, logconf, msg):
         print('Error when logging %s: %s' % (logconf.name, msg))
@@ -149,6 +164,7 @@ class ControllerThread(threading.Thread):
                     ld = np.append(ld, self.motor_pwm2)
                     ld = np.append(ld, self.motor_pwm3)
                     ld = np.append(ld, self.motor_pwm4)
+                    ld = np.append(ld, self.battery_volt)
                     fh.write(';'.join(map(str, ld)) + '\n')
                     fh.flush()
                 
@@ -196,7 +212,7 @@ class ControllerThread(threading.Thread):
         self.motor_pwm4 = self.limit_pwm(int(m4))
     
         # Print debugging message on the screen for easier debugging
-        message = ('yaw: (curr={}, ref={}, err={})\n'.format(self.yaw_curr, self.yaw_ref, yaw_err) +
+        message = ('yaw: (curr={}, ref={}, err={}),   battery:{:.3}V\n'.format(self.yaw_curr, self.yaw_ref, yaw_err, self.battery_volt) +
                    '     control: ({}, {}, {}, {}, {})\n'.format(self.enabled, self.motor_pwm1, self.motor_pwm2, self.motor_pwm3, self.motor_pwm4))
         self.print_at_period(1.0, message)
 

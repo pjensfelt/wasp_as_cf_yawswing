@@ -64,8 +64,7 @@ cd wasp_as_cf_yawswing
 ## Running the code
 * First you need to make sure that the radio module is connected to your machine and detected.
 * Opening the code cf_yawswing.py and edit the URI (line 14) matches the channel of your drone
-* Run the code with
-<pre> 
+* Run the code with <pre> 
 python3 cf_yawswing.py
 </pre>
 You should see that it connects to your drone and it should start printing information in the terminal

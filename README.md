@@ -38,9 +38,9 @@ pip3 install -e .
 * Install also the Extension pack when you installed VirtualBox (https://download.virtualbox.org/virtualbox/6.1.40/Oracle_VM_VirtualBox_Extension_Pack-6.1.40.vbox-extpack)
 * You find the virtual machine image built by BitCraze here (https://github.com/bitcraze/bitcraze-vm/releases/)
 * You find instruction from BitCraze here (https://github.com/bitcraze/bitcraze-vm). Note that
-** The CrazyRadio must be seen by the virtual machien which you ensure by selecting it under Devices/USB
-** The password is crazyflie (login name bitcraze)
-** If your virtual machien freezes when you resize the window it helped me to increase the Graphics memory to 128MB in Settings (power down VM first)
+  * The CrazyRadio must be seen by the virtual machien which you ensure by selecting it under Devices/USB
+  * The password is crazyflie (login name bitcraze)
+  * If your virtual machien freezes when you resize the window it helped me to increase the Graphics memory to 128MB in Settings (power down VM first)
 
 ## Geting the skeleton code
 Go to the directory we created for the code and download the skeleton
@@ -49,3 +49,29 @@ cd wasp_as_cf
 git clone git:https://github.com/pjensfelt/wasp_as_cf_yawswing.git
 cd wasp_as_cf_yawswing
 </pre>
+
+## Running the code
+* First you need to make sure that the radio module is connected to your machine and detected.
+* Opening the code cf_yawswing.py and edit the URI (line 14) matches the channel of your drone
+* Run the code with
+<pre> 
+python3 cf_yawswing.py
+</pre>
+You should see that it connects to your drone and it should start printing information in the terminal
+<pre>
+(cfenv) patric@PJMacPro wasp_as_cf_yawswing % python3 cf_yawswing.py
+Wating for a connection
+Connecting to radio://0/83/2M
+WARNING:cflib.crazyflie.log:Error no LogEntry to handle id=2
+WARNING:cflib.crazyflie.log:Error no LogEntry to handle id=1
+Connected to radio://0/83/2M
+Disabling controller
+Waiting for position estimate to be good enough...
+Ready! Press e to enable motors, h for help and Q to quit
+yaw: (curr=-0.2088501900434494, ref=45, err=45.20885019004345),   battery:3.8V
+     control: (False, 10000, 10000, 10000, 10000)
+</pre>
+If you rotate the drone you should see how the current angle change ("curr" above). You can also see how the reference angle changes between +45 and -45. The row that starts with control contains the contains a flag for Enable/Disable the motors followed by the PWM values that controls the speed of the four motors. The latter values can be set between 0 (not moving) and 65535 (max speed).
+
+## Your task
+Your task is to write code that makes the drone follow the reference signal as closely as possible. The reference signal is a square wave with period 5s. That is, 2.5s at 45degs, 2.5s at -45degs, etc

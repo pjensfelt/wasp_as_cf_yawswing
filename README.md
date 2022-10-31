@@ -1,6 +1,17 @@
 # Control assignment using a Crazyflie drone
 Repository for a control assignment in the WASP Autonomous Systems course
 
+## Your task
+Your task is to write code that makes the drone follow the reference signal as closely as possible. The reference signal is a square wave with period 5s. That is, 2.5s at 45degs, 2.5s at -45degs, 2.5s at 45degs, and so on. 
+
+<p>
+Please follow he instructions below to install the needed code. You will be given a skeleton to start from.
+</p>
+
+<p>
+You should document your project with a video showing the drone moving, a log file and a figure showing the angles.
+</p>
+
 ## Installation
 We will offer two options to run the code. The first one is to use Linux or MacOS and the second is to use a virtual machine provided by the company Bitcrazy that sells the Crazyflie drones. 
 
@@ -73,5 +84,8 @@ yaw: (curr=-0.2088501900434494, ref=45, err=45.20885019004345),   battery:3.8V
 </pre>
 If you rotate the drone you should see how the current angle change ("curr" above). You can also see how the reference angle changes between +45 and -45. The row that starts with control contains the contains a flag for Enable/Disable the motors followed by the PWM values that controls the speed of the four motors. The latter values can be set between 0 (not moving) and 65535 (max speed).
 
-## Your task
-Your task is to write code that makes the drone follow the reference signal as closely as possible. The reference signal is a square wave with period 5s. That is, 2.5s at 45degs, 2.5s at -45degs, etc
+## Q&A
+* Q: Why is moy drone not rotating between the same angles?
+* A: Note that your task is to make the estimated yaw angle track the reference yaw angle. Since the estimate might drift the actual angle of the drone might not move between +/-45degs which is fine. What matters is making the estimated yaw track the references.
+
+

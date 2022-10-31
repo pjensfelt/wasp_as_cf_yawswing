@@ -2,9 +2,9 @@
 Repository for a control assignment in the WASP Autonomous Systems course
 
 ## Installation
-We will offer two options to run the code. The first one is to use Linux or MacOS and the second is to use a virtual machine provided by the company Bitcrazy that sells the Crazyflie that we will be using. 
+We will offer two options to run the code. The first one is to use Linux or MacOS and the second is to use a virtual machine provided by the company Bitcrazy that sells the Crazyflie drones. 
 
-In the examples below we will put all new code in the directory wasp_as_cf to make it as easy as possible to clean up after the assignment.
+In the examples below we will put all new code in the directory wasp_as_cf to make it easy to clean up after the assignment.
 
 #### MacOS and Linux
 To avoid a system wide installation of all the dependencies we run the code in a virtual environment
@@ -34,7 +34,13 @@ pip3 install -e .
 </pre>
 
 #### Virtual machine
-
+* Download and install VirtualBox (https://www.virtualbox.org/wiki/Download_Old_Builds_6_1). We used 6.1.40 when testing this
+* Install also the Extension pack when you installed VirtualBox (https://download.virtualbox.org/virtualbox/6.1.40/Oracle_VM_VirtualBox_Extension_Pack-6.1.40.vbox-extpack)
+* You find the virtual machine image built by BitCraze here (https://github.com/bitcraze/bitcraze-vm/releases/)
+* You find instruction from BitCraze here (https://github.com/bitcraze/bitcraze-vm). Note that
+** The CrazyRadio must be seen by the virtual machien which you ensure by selecting it under Devices/USB
+** The password is crazyflie (login name bitcraze)
+** If your virtual machien freezes when you resize the window it helped me to increase the Graphics memory to 128MB in Settings (power down VM first)
 
 ## Geting the skeleton code
 Go to the directory we created for the code and download the skeleton

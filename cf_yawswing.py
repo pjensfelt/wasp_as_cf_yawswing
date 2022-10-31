@@ -41,9 +41,6 @@ class ControllerThread(threading.Thread):
     # Swing period in ms
     yaw_swing_period_ms = 10000
 
-    # The max error in angle before you can switch reference yaw (+90 or -90) value
-    yaw_err_max = 5
-
     # The current yaw value read from the Crazyflie
     yaw_curr = 0
 
@@ -178,12 +175,13 @@ class ControllerThread(threading.Thread):
             pwm = 0XFFFF
         return pwm
 
-    # Calculates the difference between two angles taking care of cases such as 359 - 1 = 2 and NOT 358
+    # Calculates the difference between two angles taking care of cases such as
+    # 179 - (-179) = -2 rather than 358
     def angle_difference(self, ang1, ang2):
         diff = ang1 - ang2
         if (diff > 180):
             diff -= 360
-        if (diff < -360):
+        if (diff < -180):
             diff += 360
         return diff
 

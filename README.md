@@ -2,10 +2,15 @@
 Repository for a control assignment in the WASP Autonomous Systems course
 
 ## Your task
-Your task is to write code that makes the drone follow the reference signal as closely as possible. The reference signal is a square wave with period 10s. That is, 5s at 40degs, 5s at -40degs, 5s at 40degs, and so on. You do not need to worry about changing the yaw reference value, it will be done for you in the skeleton that you statrt from. 
+Your task is to write code that makes the drone follow the reference signal as closely as possible. The reference signal is a square wave with period 10s. That is, 5s at 40degs, 5s at -40degs, 5s at 40degs, and so on. 
+
+<br/>[![Watch the video](https://img.youtube.com/vi/ZTXV2UIzZWA/0.jpg)](https://www.youtube.com/watch?v=ZTXV2UIzZWA). 
+<p>
+In the video above you see an example of what it might look like when the drone oascilated between +/-20 degrees. In this example the code is written in C as part of the frmware of the drone. While this allows you to use the provided UI it does make the overal assignment much harder. Therefore, in this assignment, we will instead make use of the python client library for the communicating with the drone.
+</p>
 
 <p>
-Please follow he instructions below to install the needed code. You will be given a skeleton to start from.
+Please follow he instructions below to install the needed code. You will be given a skeleton to start from. You do not need to worry about changing the yaw reference value, it will be done for you in the skeleton.
 </p>
 
 <p>

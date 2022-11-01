@@ -55,9 +55,9 @@ pip3 install -e .
 * Install also the Extension pack when you installed VirtualBox (https://download.virtualbox.org/virtualbox/6.1.40/Oracle_VM_VirtualBox_Extension_Pack-6.1.40.vbox-extpack)
 * You find the virtual machine image built by BitCraze here (https://github.com/bitcraze/bitcraze-vm/releases/)
 * You find instruction from BitCraze here (https://github.com/bitcraze/bitcraze-vm). Note that
-  * The CrazyRadio must be seen by the virtual machien which you ensure by selecting it under Devices/USB
-  * The password is crazyflie (login name bitcraze)
-  * If your virtual machien freezes when you resize the window it helped me to increase the Graphics memory to 128MB in Settings (power down VM first)
+  * The CrazyRadio must be seen by the virtual machine which you ensure by selecting it under Devices/USB in the top menu.
+  * The password is crazyflie (login name bitcraze).
+  * Is your virtual machine freezing when you resize the window? For me it was solved by increasing the Graphics memory to 128MB in Settings (power down VM first).
 
 ## Geting the skeleton code
 Go to the directory we created for the code and download the skeleton

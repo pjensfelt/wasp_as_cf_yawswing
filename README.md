@@ -138,7 +138,7 @@ Traceback (most recent call last):
     import numpy as np
 ModuleNotFoundError: No module named 'numpy'
 </pre>
-* A: Did you active the virtual environment?
+* A: Did you change terminal and forgot to active the virtual environment?
 <pre>
 cd wasp_as_cf
 source cfenv/bin/activate

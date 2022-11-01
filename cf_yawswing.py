@@ -39,8 +39,8 @@ class ControllerThread(threading.Thread):
     # Are the motors enabled or not
     enabled = False
 
-    # The stabilizer.yaw angle is supposed to track the reference value which switches between +20 and -20.
-    yaw_ref = 20
+    # The stabilizer.yaw angle is supposed to track the reference value which switches between +40 and -40.
+    yaw_ref = 40
 
     # Swing period in ms
     yaw_swing_period_ms = 10000

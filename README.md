@@ -127,7 +127,7 @@ You are expected to change the code that now sets the PWM signal to 10,000 for a
 * A: Reset the drone by pressing the black push button.
 * Q: The system tells me that numpy is not install, BUT I JUST RAN IT AND IT WORKED!!!!
 <pre>
-patric@vpn37-186 wasp_as_cf_yawswing % python3 cf_yawswing_P.py
+patric@vpn37-186 wasp_as_cf_yawswing % python3 cf_yawswing.py
 Traceback (most recent call last):
   File "/Users/patric/Dropbox/Documents/code/wasp_as_cf_yawswing/cf_yawswing_P.py", line 9, in <module>
     import numpy as np

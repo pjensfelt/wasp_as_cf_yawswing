@@ -140,10 +140,14 @@ Below you see the suggested setup
 
 ## Q&A
 * Q: How do I plot the result? 
-* A: The python file is setup to output a csv file with SPACE separator. You can open the file is for example excel or MATLAB.
+* A: The python file is setup to output a csv file with SPACE separator. You can open the file is for example excel or MATLAB. In MATLAB you could do
+<pre>
+d=load('log_20221101_141838.csv');
+plot(d(:,1),d(:,2),d(:,1),d(:,3)), grid, xlabel('Time [s]'), ylabel('Yaw angle [deg]'), legend('Current yaw','Reference yaw')
+</pre>
 * Q: The propellors are not moving despite me enabling the motors and setting a PWM value. What is wrong?
 * A: Reset the drone by pressing the black push button.
-* Q: The system tells me that numpy is not install, BUT I JUST RAN IT AND IT WORKED!!!!
+* Q: The system tells me that numpy is not install, BUT I JUST RAN IT AND IT WORKED?!?!?!?!
 <pre>
 patric@vpn37-186 wasp_as_cf_yawswing % python3 cf_yawswing.py
 Traceback (most recent call last):

@@ -85,7 +85,7 @@ python3 cf_yawswing.py
 </pre>
 You should see that it connects to your drone and it should start printing information in the terminal
 <pre>
-(cfenv) patric@PJMacPro wasp_as_cf_yawswing % python3 cf_yawswing_P.py
+(cfenv) patric@PJMacPro wasp_as_cf_yawswing % python3 cf_yawswing.py
 Wating for a connection
 Connecting to radio://0/83/2M
 WARNING:cflib.crazyflie.log:Error no LogEntry to handle id=1
@@ -126,6 +126,14 @@ You are expected to change the code that now sets the PWM signal to 10,000 for a
         self.motor_pwm4 = self.limit_int(m4, 0, 0XFFFF)
 </pre>
 </p>
+
+## Suggested setup
+Below you see the suggested setup
+<br/><img src="IMG_8479.png" width=512 title="Suggested setup">
+* The USB cable is connected to the drone to charge the battery onboard whenever you are not performing an experiment that requires the drone to be free.
+* The CrazyRadio USB antenna is connected
+* An extra battery is being charged
+
 
 ## Q&A
 * Q: The propellors are not moving despite me enabling the motors and setting a PWM value. What is wrong?

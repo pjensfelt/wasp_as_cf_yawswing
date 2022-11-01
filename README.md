@@ -125,4 +125,16 @@ You are expected to change the code that now sets the PWM signal to 10,000 for a
 ## Q&A
 * Q: The propellors are not moving despite me enabling the motors and setting a PWM value. What is wrong?
 * A: Reset the drone by pressing the black push button.
-
+* Q: The system tells me that numpy is not install, BUT I JUST RAN IT AND IT WORKED!!!!
+<pre>
+patric@vpn37-186 wasp_as_cf_yawswing % python3 cf_yawswing_P.py
+Traceback (most recent call last):
+  File "/Users/patric/Dropbox/Documents/code/wasp_as_cf_yawswing/cf_yawswing_P.py", line 9, in <module>
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'
+</pre>
+* A: Did you active the virtual environment?
+<pre>
+cd wasp_as_cf
+source cfenv/bin/activate
+</pre>

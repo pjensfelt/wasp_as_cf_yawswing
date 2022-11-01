@@ -14,7 +14,10 @@ Please follow he instructions below to install the needed code. You will be give
 </p>
 
 <p>
-You should document your project with a video showing the drone moving, a log file and a figure showing the angles.
+You should document your project with 
+* a video showing the drone moving,
+* a log file produced during the run and 
+* a figure showing the current and reference yaw angles as a function of time.
 </p>
 
 
@@ -136,6 +139,8 @@ Below you see the suggested setup
 
 
 ## Q&A
+* Q: How do I plot the result? 
+* A: The python file is setup to output a csv file with SPACE separator. You can open the file is for example excel or MATLAB.
 * Q: The propellors are not moving despite me enabling the motors and setting a PWM value. What is wrong?
 * A: Reset the drone by pressing the black push button.
 * Q: The system tells me that numpy is not install, BUT I JUST RAN IT AND IT WORKED!!!!

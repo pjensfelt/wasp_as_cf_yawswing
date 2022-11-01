@@ -53,6 +53,9 @@ cd crazyflie-lib-python.git
 pip3 install -e .
 </pre>
 
+##### USB under Linux
+With linux, the crazyradio is easily recognized, but you have to setup UDEV-permissions. Look at the usb [permission instructions](https://github.com/bitcraze/crazyflie-lib-python/blob/master/docs/installation/usb_permissions.md) to setup udev on linux.
+
 #### Virtual machine
 * Download and install VirtualBox (https://www.virtualbox.org/wiki/Download_Old_Builds_6_1). We used 6.1.40 when testing this
 * Install also the Extension pack when you installed VirtualBox (https://download.virtualbox.org/virtualbox/6.1.40/Oracle_VM_VirtualBox_Extension_Pack-6.1.40.vbox-extpack)
@@ -160,3 +163,7 @@ ModuleNotFoundError: No module named 'numpy'
 cd wasp_as_cf
 source cfenv/bin/activate
 </pre>
+* Q: No connecttion to the drone?
+* A: Did you set the correct URI? If you use a Virtual Machine, did you remember to hand over the CrazyRadio PA to the Virtual Machine (see instructions above).
+* Q: No permission to access the crazyradio USB antenna on your linux machine? 
+* A: Check that you have set the udev-permissions (see section above on USB under Linux)

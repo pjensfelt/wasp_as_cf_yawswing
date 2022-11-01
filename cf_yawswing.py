@@ -199,11 +199,9 @@ class ControllerThread(threading.Thread):
         yaw_err = self.angle_difference(self.yaw_ref, self.yaw_curr)
 
         # YOUR CODE STARTS HERE
-        # THIS IS WHERE YOU SHOULD PUT YOUR CONTROL CODE
-        # THAT OUTPUTS THE REFERENCE VALUES THE MOTOR PWM VALUES
         # In the code below set the variables m1, m2, m3, m4 appropriately
-        # The shoild each take on values in [0,65535] which is taken care of
-        # by the function limit_pwm
+        # They should each take on values in [0,65535] which is taken care of
+        # by the function limit_int below
 
         m1 = 10000;
         m2 = 10000;

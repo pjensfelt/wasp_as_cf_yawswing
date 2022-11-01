@@ -2,7 +2,7 @@
 Repository for a control assignment in the WASP Autonomous Systems course
 
 ## Your task
-Your task is to write code that makes the drone follow the reference signal as closely as possible. The reference signal is a square wave with period 5s. That is, 2.5s at 45degs, 2.5s at -45degs, 2.5s at 45degs, and so on. 
+Your task is to write code that makes the drone follow the reference signal as closely as possible. The reference signal is a square wave with period 10s. That is, 5s at 60degs, 5s at -60degs, 5s at 45degs, and so on. You do not need to worry about changing the yaw reference value, it will be done for you in the skeleton that you statrt from. 
 
 <p>
 Please follow he instructions below to install the needed code. You will be given a skeleton to start from.
@@ -84,6 +84,34 @@ yaw: (curr=-0.2088501900434494, ref=45, err=45.20885019004345),   battery:3.8V
      control: (False, 10000, 10000, 10000, 10000)
 </pre>
 If you rotate the drone you should see how the current angle change ("curr" above). You can also see how the reference angle changes between +45 and -45. The row that starts with control contains the contains a flag for Enable/Disable the motors followed by the PWM values that controls the speed of the four motors. The latter values can be set between 0 (not moving) and 65535 (max speed).
+
+<p>
+You are expected to change the code that now sets the PWM signal to 10,000 for all four motors, i.e.
+<pre>
+    def calc_control_signals(self):
+        # Calculate the error between the reference yaw signal and the current yaw
+        yaw_err = self.angle_difference(self.yaw_ref, self.yaw_curr)
+
+        # YOUR CODE STARTS HERE
+        # In the code below set the variables m1, m2, m3, m4 appropriately
+        # They should each take on values in [0,65535] which is taken care of
+        # by the function limit_int below
+
+        m1 = 10000
+        m2 = 10000
+        m3 = 10000
+        m4 = 10000
+
+        # YOUR CODE ENDS HERE
+
+        # Set the control variables and make sure that they are
+        # integers and between 0 and 65535
+        self.motor_pwm1 = self.limit_int(m1, 0, 0xFFFF)
+        self.motor_pwm2 = self.limit_int(m2, 0, 0xFFFF)
+        self.motor_pwm3 = self.limit_int(m3, 0, 0XFFFF)
+        self.motor_pwm4 = self.limit_int(m4, 0, 0XFFFF)
+</pre>
+</p>
 
 ## Q&A
 * Q: Why is moy drone not rotating between the same angles?

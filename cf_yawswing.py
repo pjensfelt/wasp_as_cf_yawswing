@@ -203,10 +203,10 @@ class ControllerThread(threading.Thread):
         # They should each take on values in [0,65535] which is taken care of
         # by the function limit_int below
 
-        m1 = 10000;
-        m2 = 10000;
-        m3 = 10000;
-        m4 = 10000;
+        m1 = 10000
+        m2 = 10000
+        m3 = 10000
+        m4 = 10000
 
         # YOUR CODE ENDS HERE
 

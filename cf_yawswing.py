@@ -30,13 +30,17 @@ def read_input(file=sys.stdin):
         termios.tcsetattr(file.fileno(), termios.TCSADRAIN, old_attrs)
 
 class ControllerThread(threading.Thread):
-    period_in_ms = 20  # Control period. [ms]
+    # Control period. [ms]
+    # WARNING: Reducing this mihg clogg the communication
+    # We are controlling the motor PWMs which is not meant
+    # to be done from offboard
+    period_in_ms = 100
 
     # Are the motors enabled or not
     enabled = False
 
-    # The stabilizer.yaw angle is supposed to track the reference value which switches between +45 and -45.
-    yaw_ref = 45
+    # The stabilizer.yaw angle is supposed to track the reference value which switches between +60 and -60.
+    yaw_ref = 60
 
     # Swing period in ms
     yaw_swing_period_ms = 10000
@@ -136,9 +140,11 @@ class ControllerThread(threading.Thread):
                 if self.yaw_ref > 0:
                     if t_ms % self.yaw_swing_period_ms > self.yaw_swing_period_ms / 2:
                         self.yaw_ref = -self.yaw_ref
+                        print('======> Reference angle is now ', self.yaw_ref)
                 else:
                     if t_ms % self.yaw_swing_period_ms <= self.yaw_swing_period_ms / 2:
                         self.yaw_ref = -self.yaw_ref
+                        print('======> Reference angle is now ', self.yaw_ref)
 
                 # Calculate the control signals
                 self.calc_control_signals()
@@ -168,12 +174,15 @@ class ControllerThread(threading.Thread):
                 # Sleep a while so that we keep a certain control frequency
                 self.loop_sleep(time_start)
 
-    def limit_pwm(self, pwm):
-        if pwm < 0:
-            pwm = 0
-        elif pwm > 0XFFFF:
-            pwm = 0XFFFF
-        return pwm
+    # Limit a value to be and int in [min_value, max_value]
+    def limit_int(self, value, min_value, max_value):
+        # Make it into an int
+        value = int(value)
+        if value < min_value:
+            value = min_value
+        elif value > max_value:
+            value = max_value
+        return value
 
     # Calculates the difference between two angles taking care of cases such as
     # 179 - (-179) = -2 rather than 358
@@ -203,12 +212,13 @@ class ControllerThread(threading.Thread):
 
         # YOUR CODE ENDS HERE
 
-        # Set the control variables and make sure that they are integers and between 0 and 65535
-        self.motor_pwm1 = self.limit_pwm(int(m1))
-        self.motor_pwm2 = self.limit_pwm(int(m2))
-        self.motor_pwm3 = self.limit_pwm(int(m3))
-        self.motor_pwm4 = self.limit_pwm(int(m4))
-    
+        # Set the control variables and make sure that they are
+        # integers and between 0 and 65535
+        self.motor_pwm1 = self.limit_int(m1, 0, 0xFFFF)
+        self.motor_pwm2 = self.limit_int(m2, 0, 0xFFFF)
+        self.motor_pwm3 = self.limit_int(m3, 0, 0XFFFF)
+        self.motor_pwm4 = self.limit_int(m4, 0, 0XFFFF)
+
         # Print debugging message on the screen for easier debugging
         message = ('yaw: (curr={}, ref={}, err={}),   battery:{:.3}V\n'.format(self.yaw_curr, self.yaw_ref, yaw_err, self.battery_volt) +
                    '     control: ({}, {}, {}, {}, {})\n'.format(self.enabled, self.motor_pwm1, self.motor_pwm2, self.motor_pwm3, self.motor_pwm4))

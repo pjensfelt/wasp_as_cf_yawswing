@@ -2,7 +2,7 @@
 Repository for a control assignment in the WASP Autonomous Systems course
 
 ## Your task
-Your task is to write code that makes the drone follow the reference signal as closely as possible. The reference signal is a square wave with period 10s. That is, 5s at 60degs, 5s at -60degs, 5s at 45degs, and so on. You do not need to worry about changing the yaw reference value, it will be done for you in the skeleton that you statrt from. 
+Your task is to write code that makes the drone follow the reference signal as closely as possible. The reference signal is a square wave with period 10s. That is, 5s at 20degs, 5s at -20degs, 5s at 20degs, and so on. You do not need to worry about changing the yaw reference value, it will be done for you in the skeleton that you statrt from. 
 
 <p>
 Please follow he instructions below to install the needed code. You will be given a skeleton to start from.
@@ -11,6 +11,7 @@ Please follow he instructions below to install the needed code. You will be give
 <p>
 You should document your project with a video showing the drone moving, a log file and a figure showing the angles.
 </p>
+
 
 ## Installation
 We will offer two options to run the code. The first one is to use Linux or MacOS and the second is to use a virtual machine provided by the company Bitcrazy that sells the Crazyflie drones. 
@@ -61,10 +62,18 @@ git clone git:https://github.com/pjensfelt/wasp_as_cf_yawswing.git
 cd wasp_as_cf_yawswing
 </pre>
 
+## Before starting
+* Be nice to the drone. They are used in a course and should be handed back in the same shape as you got them.
+* How to use the motors to make the drone rotate arond its vertical axis? This is probably the first thing you want to think about or perform experiments to figure out.
+* The thrust (upward force) on the drone is the sum of forces from the motors. Tthe drone should stay on the surface, which means that you might want to think about the max signals you can send to the motors without the drone taking off and then ensure that your signals stay below that.
+* Note that your task is to make the estimated yaw angle track the reference yaw angle. Since the estimate might drift the actual angle of the drone might not move between +/-20degs which is fine. What matters is making the estimated yaw track the references.
+
 ## Running the code
 * First you need to make sure that the radio module is connected to your machine and detected.
 * Connect the battery on the drone. Keep the USB-cable plugged in whenever you are not testing soemthing as this will charge the battery. You can run the drone with the cable connected also but it will be difficult to rotate.
-* Turn on the drone by pressing in (GENTLY!!!) the small black push button in-between two of the arms. Make sure that the drone is standing on a flat surface when you do this as the drone's IMU calibrates upon boot.
+* Turn on the drone by pressing in (GENTLY!!!) the small black push button in-between two of the arms 
+<br/>[![Watch the video](https://img.youtube.com/vi/E5t2qfsGqQY/default.jpg)](https://www.youtube.com/watch?v=E5t2qfsGqQY&t=2s). 
+* Make sure that the drone is standing on a flat surface when you do this as the drone's IMU calibrates upon boot.
 * Opening the code cf_yawswing.py and edit the URI (line 14) matches the channel of your drone
 * Run the code with <pre> 
 python3 cf_yawswing.py
@@ -114,8 +123,6 @@ You are expected to change the code that now sets the PWM signal to 10,000 for a
 </p>
 
 ## Q&A
-* Q: Why is moy drone not rotating between the same angles?
-* A: Note that your task is to make the estimated yaw angle track the reference yaw angle. Since the estimate might drift the actual angle of the drone might not move between +/-45degs which is fine. What matters is making the estimated yaw track the references.
-* Q: The propellors are not moving despite me enabling the motors and setting a PWM value. What si wrong?
-* A: Reset the drone  
+* Q: The propellors are not moving despite me enabling the motors and setting a PWM value. What is wrong?
+* A: Reset the drone by pressing the black push button.
 

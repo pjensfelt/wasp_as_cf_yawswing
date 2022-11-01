@@ -71,16 +71,16 @@ python3 cf_yawswing.py
 </pre>
 You should see that it connects to your drone and it should start printing information in the terminal
 <pre>
-(cfenv) patric@PJMacPro wasp_as_cf_yawswing % python3 cf_yawswing.py
+(cfenv) patric@PJMacPro wasp_as_cf_yawswing % python3 cf_yawswing_P.py
 Wating for a connection
 Connecting to radio://0/83/2M
-WARNING:cflib.crazyflie.log:Error no LogEntry to handle id=2
 WARNING:cflib.crazyflie.log:Error no LogEntry to handle id=1
+WARNING:cflib.crazyflie.log:Error no LogEntry to handle id=2
 Connected to radio://0/83/2M
 Disabling controller
 Waiting for position estimate to be good enough...
 Ready! Press e to enable motors, h for help and Q to quit
-yaw: (curr=-0.2088501900434494, ref=45, err=45.20885019004345),   battery:3.8V
+yaw: (curr=0.44396063685417175, ref=60, err=59.55603936314583),   battery:3.64V
      control: (False, 10000, 10000, 10000, 10000)
 </pre>
 If you rotate the drone you should see how the current angle change ("curr" above). You can also see how the reference angle changes between +45 and -45. The row that starts with control contains the contains a flag for Enable/Disable the motors followed by the PWM values that controls the speed of the four motors. The latter values can be set between 0 (not moving) and 65535 (max speed).

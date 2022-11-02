@@ -2,7 +2,7 @@
 Repository for a control assignment in the WASP Autonomous Systems course
 
 ## Your task
-Your task is to write code that makes the drone follow the reference signal as closely as possible. The reference signal is a square wave with period 10s. That is, 5s at 40degs, 5s at -40degs, 5s at 40degs, and so on. 
+Your task is to write code that makes the drone follow the reference signal as closely as possible. The reference signal is a square wave with period 10s. That is, 5s at 20degs, 5s at -20degs, 5s at 20degs, and so on. 
 
 <br/>[![Watch the video](https://img.youtube.com/vi/ZTXV2UIzZWA/0.jpg)](https://www.youtube.com/watch?v=ZTXV2UIzZWA). 
 <p>
@@ -77,7 +77,7 @@ cd wasp_as_cf_yawswing
 * Be nice to the drone. They are used in a course and should be handed back in the same shape as you got them.
 * How to use the motors to make the drone rotate arond its vertical axis? This is probably the first thing you want to think about or perform experiments to figure out.
 * The thrust (upward force) on the drone is the sum of forces from the motors. Tthe drone should stay on the surface, which means that you might want to think about the max signals you can send to the motors without the drone taking off and then ensure that your signals stay below that.
-* Note that your task is to make the estimated yaw angle track the reference yaw angle. Since the estimate might drift the actual angle of the drone might not move between +/-40degs which is fine. What matters is making the estimated yaw track the references.
+* Note that your task is to make the estimated yaw angle track the reference yaw angle. Since the estimate might drift the actual angle of the drone might not move between +/-20degs which is fine. What matters is making the estimated yaw track the references.
 
 ## Running the code
 * First you need to make sure that the radio module is connected to your machine and detected.

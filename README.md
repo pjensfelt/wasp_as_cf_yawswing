@@ -13,12 +13,12 @@ In the video above you see an example of what it might look like when the drone 
 Please follow he instructions below to install the needed code. You will be given a skeleton to start from. You do not need to worry about changing the yaw reference value, it will be done for you in the skeleton.
 </p>
 
-<p>
+<p/>
 You should document your project with 
+
 * a video showing the drone moving,
 * a log file produced during the run and 
 * a figure showing the current and reference yaw angles as a function of time.
-</p>
 
 
 ## Installation

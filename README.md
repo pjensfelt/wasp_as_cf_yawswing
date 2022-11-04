@@ -15,7 +15,7 @@ Please follow he instructions below to install the needed code. You will be give
 
 
 ## Installation
-We will offer two options to run the code. The first one is to use Linux or MacOS and the second is to use a virtual machine provided by the company Bitcrazy that sells the Crazyflie drones. 
+We will offer two options to run the code. The first one is to use <b>Linux or MacOS</b> and the second is to use a <b>virtual machine</b> provided by the company Bitcrazy that sells the Crazyflie drones. 
 
 In the examples below we will put all new code in the directory wasp_as_cf to make it easy to clean up after the assignment.
 
@@ -57,6 +57,7 @@ With linux, the crazyradio is easily recognized, but you have to setup UDEV-perm
   * The CrazyRadio must be seen by the virtual machine which you ensure by selecting it under Devices/USB in the top menu.
   * The password is crazyflie (login name bitcraze).
   * Is your virtual machine freezing when you resize the window? For me it was solved by increasing the Graphics memory to 128MB in Settings (power down VM first).
+* You do not need to install anything inside the virtual machine, it is all set up for you.
 
 ## Geting the skeleton code
 Go to the directory we created for the code and download the skeleton

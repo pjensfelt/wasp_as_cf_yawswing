@@ -60,7 +60,7 @@ With linux, the crazyradio is easily recognized, but you have to setup UDEV-perm
 Go to the directory we created for the code and download the skeleton
 <pre>
 cd wasp_as_cf
-git clone git:https://github.com/pjensfelt/wasp_as_cf_yawswing.git
+git clone https://github.com/pjensfelt/wasp_as_cf_yawswing.git
 cd wasp_as_cf_yawswing
 </pre>
 

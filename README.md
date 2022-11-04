@@ -1,4 +1,4 @@
-# Control assignment using a Crazyflie drone
+# Assignment on making the Crazyflie drone swing back and forth
 Repository for a control assignment in the WASP Autonomous Systems course
 
 ## Your task
@@ -151,7 +151,7 @@ Traceback (most recent call last):
     import numpy as np
 ModuleNotFoundError: No module named 'numpy'
 </pre>
-* A: Did you change terminal and forgot to active the virtual environment?
+* A: Did you install your system in a virtual environment and did you change terminal and forgot to active the virtual environment?
 <pre>
 cd wasp_as_cf
 source cfenv/bin/activate

@@ -47,11 +47,10 @@ pip3 install -e .
 With linux, the crazyradio is easily recognized, but you have to setup UDEV-permissions. Look at the usb [permission instructions](https://github.com/bitcraze/crazyflie-lib-python/blob/master/docs/installation/usb_permissions.md) to setup udev on linux.
 
 #### Virtual machine
-* Download and install VirtualBox (https://www.virtualbox.org/wiki/Download_Old_Builds_6_1). We used 6.1.40 when testing this
-* Install also the Extension pack when you installed VirtualBox (https://download.virtualbox.org/virtualbox/6.1.40/Oracle_VM_VirtualBox_Extension_Pack-6.1.40.vbox-extpack)
+* Download and install VirtualBox (https://www.virtualbox.org).
 * You find the virtual machine image built by BitCraze here (https://github.com/bitcraze/bitcraze-vm/releases/)
-* You find instruction from BitCraze here (https://github.com/bitcraze/bitcraze-vm). Note that
-  * The CrazyRadio must be seen by the virtual machine which you ensure by selecting it under Devices/USB in the top menu.
+* You find instruction from Bitcraze here (https://github.com/bitcraze/bitcraze-vm). Note that
+  * The Crazyradio USB atnetnna must be seen by the virtual machine which you ensure by selecting it under Devices/USB in the top menu.
   * The password is crazyflie (login name bitcraze).
   * Is your virtual machine freezing when you resize the window? For me it was solved by increasing the Graphics memory to 128MB in Settings (power down VM first).
 * You do not need to install anything inside the virtual machine, it is all set up for you.

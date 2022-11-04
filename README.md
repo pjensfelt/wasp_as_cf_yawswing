@@ -71,7 +71,7 @@ cd wasp_as_cf_yawswing
 * Note that your task is to make the estimated yaw angle track the reference yaw angle. Since the estimate might drift the actual angle of the drone might not move between +/-20degs which is fine. What matters is making the estimated yaw track the references.
 
 ## Running the code
-* First you need to make sure that the radio module is connected to your machine and detected.
+* First you need to make sure that the radio module is connected to your machine and detected. If you use the virtual machine make sure that you have selected the CrazyRadio PA in the menu Devices/USB inside the virtual machine.
 * Connect the battery on the drone. Keep the USB-cable plugged in whenever you are not testing soemthing as this will charge the battery. You can run the drone with the cable connected also but it will be difficult to rotate.
 * Turn on the drone by pressing in (GENTLY!!!) the small black push button in-between two of the arms 
 <br/>[![Watch the video](https://img.youtube.com/vi/E5t2qfsGqQY/default.jpg)](https://www.youtube.com/watch?v=E5t2qfsGqQY&t=2s). 

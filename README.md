@@ -33,10 +33,7 @@ You should now see that you are in this environment by looking at the prompt in 
 </pre>
 That is, the prompt is pre-fixed with the name of the virtual environment.
 
-If you close the terminal where you ran this you need to re-run the activate command. To get out of the virtual environment you run
-<pre>
-deactivate
-</pre>
+If you close the terminal where you ran this you need to re-run the activate command. To get out of the virtual environment you can also run the command <i>deactivate</i>.
 
 Create a directry where you keep the crazyflie python library code
 <pre>

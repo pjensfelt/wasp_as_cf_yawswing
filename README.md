@@ -68,8 +68,11 @@ An alternative to installing the source directly on your machine is to use a Vir
 * You find instruction from Bitcraze here (https://github.com/bitcraze/bitcraze-vm). Note that
   * The Crazyradio USB atnetnna must be seen by the virtual machine which you ensure by selecting it under Devices/USB in the top menu.
   * The password is crazyflie (login name bitcraze).
-  * Is your virtual machine freezing when you resize the window? For me it was solved by increasing the Graphics memory to 128MB in Settings (power down VM first).
 * You do not need to install anything inside the virtual machine, it is all set up for you.
+
+##### Tweaking the VM
+* Is your virtual machine freezing when you resize the window? For me it was solved by increasing the Graphics memory to 128MB in Settings (power down VM first).
+* Life is usually a lot easier in your VM if you install the guest additions. This allows you, for example, to make the clipboard operate across both host and virtual machine so that you can copy things from a window on one and past it in another.
 
 ## Geting the skeleton code
 Go to the directory we created for the code and download the skeleton
@@ -171,3 +174,6 @@ source cfenv/bin/activate
 * A: Did you set the correct URI? If you use a Virtual Machine, did you remember to hand over the CrazyRadio PA to the Virtual Machine (see instructions above).
 * Q: No permission to access the crazyradio USB antenna on your linux machine? 
 * A: Check that you have set the udev-permissions (see section above on USB under Linux)
+* Q: The virtual machine does not allow me to paste things I copied from the host, why?
+* A1: You need to active bidirection clipboard and this requires installing the guest additions. Did you do that?
+* A2: If you try to paste by ctrl-v it will not work, in Liunx it is shift-ctrl-v (and shift-ctrl-c to copy from a terminal).

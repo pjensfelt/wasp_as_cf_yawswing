@@ -73,6 +73,11 @@ An alternative to installing the source directly on your machine is to use a Vir
 ##### Tweaking the VM
 * Is your virtual machine freezing when you resize the window? For me it was solved by increasing the Graphics memory to 128MB in Settings (power down VM first).
 * Life is usually a lot easier in your VM if you install the guest additions. This allows you, for example, to make the clipboard operate across both host and virtual machine so that you can copy things from a window on one and past it in another.
+* To install guest additions do the following in a terminal
+<pre>
+sudo apt update
+sudo apt install virtualbox-guest-additions-iso
+</pre>
 
 ## Geting the skeleton code
 Go to the directory we created for the code and download the skeleton

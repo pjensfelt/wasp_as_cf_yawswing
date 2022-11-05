@@ -15,18 +15,28 @@ Please follow he instructions below to install the needed code. You will be give
 
 
 ## Installation
-We will offer two options to run the code. The first one is to use <b>Linux or MacOS</b> and the second is to use a <b>virtual machine</b> provided by the company Bitcrazy that sells the Crazyflie drones. 
+We will offer two options to run the code. The first one is to install things direcly on your machine and the second is to use a <i>virtual machine</i>. The latter example will not allow you to get as good result as you will be communicating from the virtual machine to the host machine (your laptop) and then to the drone. This means that communication will be slow.
 
-In the examples below we will put all new code in the directory wasp_as_cf to make it easy to clean up after the assignment.
+In the examples below we will put all new code in the directory <i>wasp_as_cf</i> to make it easy to clean up after the assignment.
 
-#### MacOS and Linux
-To avoid a system wide installation of all the dependencies we run the code in a virtual environment
+#### Installing directly on your machine
+The aim is here to install [cflib: Crazyflie python library](https://github.com/bitcraze/crazyflie-lib-python) which requires Python 3.7+. In the instructions below replace python/pip with python3/pip3 if the system complains.
+
+First we create a directory where we keep all files so that you can clean later.
 <pre>
 mkdir wasp_as_cf
 cd wasp_as_cf
+</pre>
+To avoid a system wide installation of all the dependencies we run the code in a self-contained python environment. This way it will not influence your python installation. For this we will use [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html). 
+<pre>
 virtualenv -p python3 cfenv
 source cfenv/bin/activate
 </pre>
+If you use Windows the latter command is replaced with
+<pre>
+cfenv/bin/activate.bit
+</pre>
+
 You should now see that you are in this environment by looking at the prompt in the terminal. It might look like
 <pre>
 (cfenv) patric@PJMacPro wasp_as_cf_yawswing % 
@@ -43,10 +53,16 @@ cd crazyflie-lib-python.git
 pip3 install -e .
 </pre>
 
+If you do not have git installed you can also download the source code as a zip file. You go to the [github page for Crazyflie python library](https://github.com/bitcraze/crazyflie-lib-python) and click the green button Code in the upper right corner and select "Download ZIP".
+
 ##### USB under Linux
 With linux, the crazyradio is easily recognized, but you have to setup UDEV-permissions. Look at the usb [permission instructions](https://github.com/bitcraze/crazyflie-lib-python/blob/master/docs/installation/usb_permissions.md) to setup udev on linux.
 
+##### Crazyradio antenna Windows
+If you use Windows you need to [install the driver](https://www.bitcraze.io/documentation/repository/crazyradio-firmware/master/building/usbwindows/) for the Crazyradio USB antenna.
+
 #### Virtual machine
+An alternative to installing the source directly on your machine is to use a Virtualbox virtual machine.
 * Download and install VirtualBox (https://www.virtualbox.org).
 * You find the virtual machine image built by BitCraze here (https://github.com/bitcraze/bitcraze-vm/releases/)
 * You find instruction from Bitcraze here (https://github.com/bitcraze/bitcraze-vm). Note that

@@ -66,7 +66,7 @@ An alternative to installing the source directly on your machine is to use a Vir
 * Download and install VirtualBox (https://www.virtualbox.org).
 * You find the virtual machine image built by BitCraze here (https://github.com/bitcraze/bitcraze-vm/releases/)
 * You find instruction from Bitcraze here (https://github.com/bitcraze/bitcraze-vm). Note that
-  * The Crazyradio USB atnetnna must be seen by the virtual machine which you ensure by selecting it under Devices/USB in the top menu.
+  * The Crazyradio USB antenna must be seen by the virtual machine which you ensure by selecting it under Devices/USB in the top menu.
   * The password is crazyflie (login name bitcraze).
 * You do not need to install anything inside the virtual machine, it is all set up for you.
 

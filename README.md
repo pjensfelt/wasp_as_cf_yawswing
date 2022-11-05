@@ -124,10 +124,6 @@ To ensure that you have a responsive system do a test where you disable (press '
 ## Your coding task
 You are expected to change the code (lines 207-210) that now sets the PWM signal to 10,000 for all four motors, i.e.
 <pre>
-    def calc_control_signals(self):
-        # Calculate the error between the reference yaw signal and the current yaw
-        yaw_err = self.angle_difference(self.yaw_ref, self.yaw_curr)
-
         # YOUR CODE STARTS HERE
         # In the code below set the variables m1, m2, m3, m4 appropriately
         # They should each take on values in [0,65535] which is taken care of
@@ -139,13 +135,6 @@ You are expected to change the code (lines 207-210) that now sets the PWM signal
         m4 = 10000
 
         # YOUR CODE ENDS HERE
-
-        # Set the control variables and make sure that they are
-        # integers and between 0 and 65535
-        self.motor_pwm1 = self.limit_int(m1, 0, 0xFFFF)
-        self.motor_pwm2 = self.limit_int(m2, 0, 0xFFFF)
-        self.motor_pwm3 = self.limit_int(m3, 0, 0XFFFF)
-        self.motor_pwm4 = self.limit_int(m4, 0, 0XFFFF)
 </pre>
 
 ## Suggested setup

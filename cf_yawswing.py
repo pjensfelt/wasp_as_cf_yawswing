@@ -31,7 +31,7 @@ def read_input(file=sys.stdin):
 
 class ControllerThread(threading.Thread):
     # Control period. [ms]
-    # WARNING: Reducing this mihg clogg the communication
+    # WARNING: Reducing this might clogg the communication
     # We are controlling the motor PWMs which is not meant
     # to be done from offboard
     period_in_ms = 100

@@ -155,7 +155,7 @@ Below you see the suggested setup
 ## Video demonstration
 In the video below we show first how to install and set up the virtual machine, install the skeleton code, change the channel and run the code. If you are not using the virtual machine skip directly ahead to 4:45.
 <br/>[![Watch the video](https://img.youtube.com/vi/IACCsOqROpI/0.jpg)](https://www.youtube.com/watch?v=IACCsOqROpI). 
-Below you find the time stamps for different events in the file
+<br/>Below you find the time stamps for different events in the file
 * 0:00 Install the virtual machine file from bitcraze
 * 0:40 Setting up and starting the VM
 * 2:00 Connecting the USB antenna
@@ -163,6 +163,7 @@ Below you find the time stamps for different events in the file
 * 4:08 Active bidirectional clipboard (not shared desktop as I say in the video)
 * 4:25 Copy/paste in Linux
 * 4:45 Installing the skeleton code
+* 5:15 Running the code <== <b>DONT DO THIS!!! FIRST CHANGE THE CHANNEL AS BELOW!!!</b>
 * 5:55 Change the channel for the drone in the code
 * 6:40 Connecting to the drone and running the code
 * 6:55 What we see on the screen and where to change in the code

@@ -111,8 +111,18 @@ yaw: (curr=0.44396063685417175, ref=60, err=59.55603936314583),   battery:3.64V
 </pre>
 If you rotate the drone you should see how the current angle change ("curr" above). You can also see how the reference angle changes between +45 and -45. The row that starts with control contains the contains a flag for Enable/Disable the motors followed by the PWM values that controls the speed of the four motors. The latter values can be set between 0 (not moving) and 65535 (max speed).
 
-<p>
-You are expected to change the code that now sets the PWM signal to 10,000 for all four motors, i.e.
+### Sanity check
+To ensure that you have a responsive system do a test where you disable (press 'd') and enable (press 'e') the motors. They should stop/start spinning directly when you press. If they do not you have a problem. If you use the virtual machine this is almost guaranteed to happen and then you need to lower the frequency of the loop (increas ethe period).
+<pre>
+    # Control period. [ms]
+    # WARNING: Reducing this might clogg the communication
+    # We are controlling the motor PWMs which is not meant
+    # to be done from offboard
+    period_in_ms = 100
+</pre>
+
+## Your coding task
+You are expected to change the code (lines 207-210) that now sets the PWM signal to 10,000 for all four motors, i.e.
 <pre>
     def calc_control_signals(self):
         # Calculate the error between the reference yaw signal and the current yaw
@@ -137,7 +147,6 @@ You are expected to change the code that now sets the PWM signal to 10,000 for a
         self.motor_pwm3 = self.limit_int(m3, 0, 0XFFFF)
         self.motor_pwm4 = self.limit_int(m4, 0, 0XFFFF)
 </pre>
-</p>
 
 ## Suggested setup
 Below you see the suggested setup

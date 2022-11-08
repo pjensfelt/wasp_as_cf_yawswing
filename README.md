@@ -53,7 +53,7 @@ Create a directry where you keep the crazyflie python library code
 <pre>
 cd wasp_as_cf
 git clone https://github.com/bitcraze/crazyflie-lib-python.git
-cd crazyflie-lib-python.git
+cd crazyflie-lib-python
 pip3 install -e .
 </pre>
 

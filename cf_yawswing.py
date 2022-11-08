@@ -36,7 +36,7 @@ if platform.system() != "Windows":
 else:
     def read_input(file=sys.stdin):
         while not msvcrt.kbhit():
-            return msvcrt.getch()
+            return msvcrt.getch().decode()
 
 class ControllerThread(threading.Thread):
     # Control period. [ms]

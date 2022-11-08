@@ -1,8 +1,12 @@
 from __future__ import print_function
+import platform
 
 import sys
 import time
-import termios
+if platform.system() != "Windows":
+    import termios
+else:
+    import msvcrt
 import logging
 import threading
 
@@ -13,21 +17,26 @@ from cflib.crazyflie.log import LogConfig
 # Set a channel - if set to None, the first available crazyflie is used
 URI = 'radio://0/83/2M'
 
-def read_input(file=sys.stdin):
-    """Registers keystrokes and yield these every time one of the
-    *valid_characters* are pressed."""
-    old_attrs = termios.tcgetattr(file.fileno())
-    new_attrs = old_attrs[:]
-    new_attrs[3] = new_attrs[3] & ~(termios.ECHO | termios.ICANON)
-    try:
-        termios.tcsetattr(file.fileno(), termios.TCSADRAIN, new_attrs)
-        while True:
-            try:
-                yield sys.stdin.read(1)
-            except (KeyboardInterrupt, EOFError):
-                break
-    finally:
-        termios.tcsetattr(file.fileno(), termios.TCSADRAIN, old_attrs)
+if platform.system() != "Windows":
+    def read_input(file=sys.stdin):
+        """Registers keystrokes and yield these every time one of the
+        *valid_characters* are pressed."""
+        old_attrs = termios.tcgetattr(file.fileno())
+        new_attrs = old_attrs[:]
+        new_attrs[3] = new_attrs[3] & ~(termios.ECHO | termios.ICANON)
+        try:
+            termios.tcsetattr(file.fileno(), termios.TCSADRAIN, new_attrs)
+            while True:
+                try:
+                    yield sys.stdin.read(1)
+                except (KeyboardInterrupt, EOFError):
+                    break
+        finally:
+            termios.tcsetattr(file.fileno(), termios.TCSADRAIN, old_attrs)
+else:
+    def read_input(file=sys.stdin):
+        while not msvcrt.kbhit():
+            return msvcrt.getch()
 
 class ControllerThread(threading.Thread):
     # Control period. [ms]

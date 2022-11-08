@@ -36,6 +36,10 @@ If you use Windows the latter command is replaced with
 <pre>
 cfenv/bin/activate.bit
 </pre>
+On Ubuntu you might need to do the follow to get access to virtualenv.
+<pre>
+sudo apt-get install virtualenv
+</pre>
 
 You should now see that you are in this environment by looking at the prompt in the terminal. It might look like
 <pre>

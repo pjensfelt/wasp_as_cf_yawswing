@@ -19,7 +19,7 @@ We will offer two options to run the code. The first one is to install things di
 
 In the examples below we will put all new code in the directory <i>wasp_as_cf</i> to make it easy to clean up after the assignment.
 
-#### Installing directly on your machine
+#### Installing directly on your machine (we recommend not to use Windows)
 The aim is here to install [cflib: Crazyflie python library](https://github.com/bitcraze/crazyflie-lib-python) which requires Python 3.7+. In the instructions below replace python/pip with python3/pip3 if the system complains.
 
 First we create a directory where we keep all files so that you can clean later.
@@ -63,7 +63,7 @@ If you do not have git installed you can also download the source code as a zip 
 With linux, the crazyradio is easily recognized, but you have to setup UDEV-permissions. Look at the usb [permission instructions](https://github.com/bitcraze/crazyflie-lib-python/blob/master/docs/installation/usb_permissions.md) to setup udev on linux.
 
 ##### Crazyradio antenna Windows
-If you use Windows you need to [install the driver](https://www.bitcraze.io/documentation/repository/crazyradio-firmware/master/building/usbwindows/) for the Crazyradio USB antenna.
+If you use Windows you MUST [install the driver](https://www.bitcraze.io/documentation/repository/crazyradio-firmware/master/building/usbwindows/) for the Crazyradio USB antenna.
 
 #### Virtual machine
 An alternative to installing the source directly on your machine is to use a Virtualbox virtual machine.
